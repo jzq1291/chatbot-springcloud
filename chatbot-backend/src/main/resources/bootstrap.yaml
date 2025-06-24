@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: chatbot-backend
+  profiles:
+    active: dev # 激活开发环境配置
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        # 共享配置
+        shared-configs:
+          - data-id: common-config.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+        # 扩展配置
+        extension-configs:
+          - data-id: ${spring.application.name}-${spring.profiles.active}.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+  config:
+    import:
+      - optional:nacos:${spring.application.name}.yaml
+      - optional:nacos:${spring.application.name}-${spring.profiles.active}.yaml
+      - optional:nacos:common-config.yaml 

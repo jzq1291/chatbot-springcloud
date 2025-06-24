@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: knowledge-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        shared-configs:
+          - data-id: common-config.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+        extension-configs:
+          - data-id: ${spring.application.name}-${spring.profiles.active}.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+        import-check:
+          enabled: false
+  config:
+    import: optional:nacos: 
