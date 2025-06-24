@@ -13,8 +13,12 @@
     <description>Parent project for Chatbot SpringCloud Microservices</description>
 
     <modules>
-        <module>chatbot-backend</module>
+        <module>gateway-service</module>
+        <module>user-service</module>
+        <module>auth-service</module>
+        <module>chat-service</module>
         <module>knowledge-service</module>
+        <module>chatbot-backend</module>
     </modules>
 
     <properties>
@@ -36,6 +40,9 @@
         <hanlp.version>portable-1.8.4</hanlp.version>
         <apache-poi.version>5.2.4</apache-poi.version>
         <postgresql.version>42.7.5</postgresql.version>
+        <rocketmq.version>2.2.3</rocketmq.version>
+        <seata.version>1.7.0</seata.version>
+        <sentinel.version>1.8.6</sentinel.version>
     </properties>
 
     <dependencyManagement>
@@ -128,6 +135,24 @@
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
+            </dependency>
+            <!-- RocketMQ -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+            <!-- Seata -->
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>${seata.version}</version>
+            </dependency>
+            <!-- Sentinel -->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-spring-boot-starter</artifactId>
+                <version>${sentinel.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

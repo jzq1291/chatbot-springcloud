@@ -22,24 +22,24 @@ export interface ChatHistoryItem {
 export const chatApi = {
   // 获取所有会话
   getAllSessions: () => {
-    return request.get<string[]>('/ai/chat/sessions')
+    return request.get<string[]>('/api/chat/sessions')
   },
 
   // 获取会话历史
   getHistory: (sessionId: string) => {
-    return request.get<ChatHistoryItem[]>(`/ai/chat/history/${sessionId}`)
+    return request.get<ChatHistoryItem[]>(`/api/chat/history/${sessionId}`)
   },
 
   // 发送消息
   sendMessage: (data: ChatRequest) => {
-    return request.post<ChatResponse>('/ai/chat/send', data)
+    return request.post<ChatResponse>('/api/chat/send', data)
   },
 
   // 发送流式消息
   sendMessageStreaming: (data: ChatRequest, onChunk: (chunk: ChatResponse) => void) => {
     let buffer = '' // 用于存储未完成的数据
     let processedMessages = new Set() // 用于跟踪已处理的消息
-    return request.post<ChatResponse>('/ai/chat/send/reactive', data, {
+    return request.post<ChatResponse>('/api/chat/send/reactive', data, {
       responseType: 'stream',
       onDownloadProgress: (progressEvent: AxiosProgressEvent) => {
         const chunk = progressEvent.event?.target?.response
@@ -89,11 +89,11 @@ export const chatApi = {
 
   // 删除会话
   deleteSession: (sessionId: string) => {
-    return request.delete(`/ai/chat/sessions/${sessionId}`)
+    return request.delete(`/api/chat/sessions/${sessionId}`)
   },
 
   // 获取可用模型
   getAvailableModels: () => {
-    return request.get<string[]>('/ai/chat/models')
+    return request.get<string[]>('/api/chat/models')
   }
 } 

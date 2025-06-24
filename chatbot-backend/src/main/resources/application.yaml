@@ -1,6 +1,6 @@
 # 服务器配置
 server:
-  port: 8082  # 应用服务端口
+  port: 8084  # 修改端口，避免与auth-service冲突
 
 spring:
   cloud:
@@ -15,7 +15,7 @@ spring:
       strict: false # 严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
       datasource:
         master:
-          url: jdbc:postgresql://localhost:5432/chatbotmb?currentSchema=chatbotmb
+          url: jdbc:postgresql://localhost:5432/chatbotspringcloud?currentSchema=chatbotmb
           username: postgres
           password: 123456
           driver-class-name: org.postgresql.Driver

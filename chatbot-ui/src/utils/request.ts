@@ -5,7 +5,7 @@ import router from '@/router'
 
 // 创建 axios 实例
 const service: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8082',
+  baseURL: 'http://localhost:8080',
   timeout: 500000,
   headers: {
     'Content-Type': 'application/json'
@@ -13,7 +13,7 @@ const service: AxiosInstance = axios.create({
 })
 
 // 不需要认证的接口
-const publicApis = ['/ai/auth/login', '/ai/auth/register']
+const publicApis = ['/api/auth/login', '/api/auth/register']
 
 // 请求拦截器
 service.interceptors.request.use(
@@ -102,7 +102,7 @@ export const validateToken = async () => {
 
   try {
     // 尝试发送一个请求来验证 token
-    await service.get('/ai/auth/validate')
+    await service.get('/api/auth/validate')
     return true
   } catch (error) {
     // 如果请求失败，说明 token 无效

@@ -3,44 +3,44 @@ import type { KnowledgeBase, PageResponse } from './types'
 
 export const knowledgeApi = {
     getKnowledgeList: (page: number, size: number) => {
-        return request.get<PageResponse<KnowledgeBase>>('/ai/knowledge', {
+        return request.get<PageResponse<KnowledgeBase>>('/api/knowledge', {
             params: { page, size }
         })
     },
 
     searchKnowledge: (keyword: string, page: number, size: number) => {
-        return request.get<PageResponse<KnowledgeBase>>('/ai/knowledge/search', {
+        return request.get<PageResponse<KnowledgeBase>>('/api/knowledge/search', {
             params: { keyword, page, size }
         })
     },
 
     findByCategory: (category: string, page: number, size: number) => {
-        return request.get<PageResponse<KnowledgeBase>>(`/ai/knowledge/category/${category}`, {
+        return request.get<PageResponse<KnowledgeBase>>(`/api/knowledge/category/${category}`, {
             params: { page, size }
         })
     },
 
     addKnowledge: (knowledge: KnowledgeBase) => {
-        return request.post<KnowledgeBase>('/ai/knowledge', knowledge)
+        return request.post<KnowledgeBase>('/api/knowledge', knowledge)
     },
 
     updateKnowledge: (knowledge: KnowledgeBase) => {
-        return request.put<KnowledgeBase>(`/ai/knowledge/${knowledge.id}`, knowledge)
+        return request.put<KnowledgeBase>(`/api/knowledge/${knowledge.id}`, knowledge)
     },
 
     deleteKnowledge: (id: number) => {
-        return request.delete(`/ai/knowledge/${id}`)
+        return request.delete(`/api/knowledge/${id}`)
     },
 
     batchImportKnowledge: (knowledgeList: KnowledgeBase[]) => {
-        return request.post('/ai/knowledge/batch-import', knowledgeList)
+        return request.post('/api/knowledge/batch-import', knowledgeList)
     },
 
     /**
      * 下载Excel文件（BIO方式）
      */
     downloadExcelBio: () => {
-        return request.get('/ai/knowledge/export/bio', {
+        return request.get('/api/knowledge/export/bio', {
             responseType: 'blob'
         })
     },
@@ -49,7 +49,7 @@ export const knowledgeApi = {
      * 下载Excel文件（NIO方式）
      */
     downloadExcelNio: () => {
-        return request.get('/ai/knowledge/export/nio', {
+        return request.get('/api/knowledge/export/nio', {
             responseType: 'blob'
         })
     },
@@ -58,7 +58,7 @@ export const knowledgeApi = {
      * 下载Excel文件（流式NIO方式）
      */
     downloadExcelStreamingNio: () => {
-        return request.get('/ai/knowledge/export/streaming-nio', {
+        return request.get('/api/knowledge/export/streaming-nio', {
             responseType: 'blob'
         })
     },
@@ -67,7 +67,7 @@ export const knowledgeApi = {
      * 下载CSV文件（流式导出）
      */
     downloadCsv: () => {
-        return request.get('/ai/knowledge/export/csv', {
+        return request.get('/api/knowledge/export/csv', {
             responseType: 'blob'
         })
     }

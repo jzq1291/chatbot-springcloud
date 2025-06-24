@@ -11,24 +11,24 @@ export interface User {
 
 export const userApi = {
   getAll: (page: number, size: number) => {
-    return request.get<PageResponse<User>>('/ai/users', {
+    return request.get<PageResponse<User>>('/api/users', {
       params: { page, size }
     })
   },
 
   getById: (id: number) => {
-    return request.get<User>(`/ai/users/${id}`)
+    return request.get<User>(`/api/users/${id}`)
   },
 
   create: (user: User) => {
-    return request.post<User>('/ai/users', user)
+    return request.post<User>('/api/users', user)
   },
 
   update: (id: number, user: User) => {
-    return request.put<User>(`/ai/users/${id}`, user)
+    return request.put<User>(`/api/users/${id}`, user)
   },
 
   delete: (id: number) => {
-    return request.delete(`/ai/users/${id}`)
+    return request.delete(`/api/users/${id}`)
   }
 } 
