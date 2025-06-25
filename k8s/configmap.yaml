@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chatbot-config
+  namespace: chatbot
+  labels:
+    app: chatbot
+    component: config
+data:
+  # 数据库配置
+  DB_HOST: "postgresql-service"
+  DB_PORT: "5432"
+  DB_NAME: "chatbotspringcloud"
+  
+  # Redis配置
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  REDIS_DATABASE: "0"
+  
+  # Nacos配置
+  NACOS_SERVER: "nacos-service:8848"
+  NACOS_NAMESPACE: "chatbot"
+  NACOS_GROUP: "DEFAULT_GROUP"
+  
+  # JWT配置
+  JWT_SECRET: "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970"
+  JWT_EXPIRATION: "86400000"
+  
+  # 服务端口配置
+  GATEWAY_PORT: "8080"
+  AUTH_PORT: "8082"
+  USER_PORT: "8081"
+  CHAT_PORT: "8083"
+  KNOWLEDGE_PORT: "8085"
+  LEGACY_PORT: "8084"
+  
+  # 环境配置
+  SPRING_PROFILES_ACTIVE: "k8s"
+  LOGGING_LEVEL: "INFO"
+  
+  # 限流配置
+  GATEWAY_RATE_LIMIT: "100"
+  AUTH_RATE_LIMIT: "200"
+  USER_RATE_LIMIT: "50"
+  CHAT_RATE_LIMIT: "20"
+  KNOWLEDGE_RATE_LIMIT: "30" 
